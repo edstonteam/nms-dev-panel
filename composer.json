@@ -1,5 +1,5 @@
 {
-    "name": "egarrido/nms-dev-panel",
+    "name": "edstonteam/nms-dev-panel",
     "description": "Developer panel for Laravel applications",
     "type": "library",
     "license": "MIT",
@@ -14,18 +14,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Egarrido\\NmsDevPanel\\": "src/"
+            "Edstonteam\\NmsDevPanel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Egarrido\\NmsDevPanel\\Tests\\": "tests/"
+            "Edstonteam\\NmsDevPanel\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Egarrido\\NmsDevPanel\\NmsDevPanelServiceProvider"
+                "Edstonteam\\NmsDevPanel\\NmsDevPanelServiceProvider"
             ]
         }
     },
