@@ -18,15 +18,27 @@ class PanelTest extends TestCase
         $response->assertSee('Upload dump');
         $response->assertSee('Clear storage &amp; cookies', false);
         $response->assertSee('Close panel');
-        $this->assertStringContainsString('nms-dev-panel', $response->getContent());
-        $this->assertStringContainsString('[name="email"]', $response->getContent());
-        $this->assertStringContainsString('setNativeValue(field,value)', $response->getContent());
-        $this->assertStringContainsString('field.blur()', $response->getContent());
-        $this->assertStringContainsString("data.append('confirmation','REPLACE')", $response->getContent());
-        $this->assertStringContainsString("clearBrowserState();status.textContent='Database replaced and payments configured'", $response->getContent());
-        $this->assertStringContainsString('window.location.reload()', $response->getContent());
-        $this->assertStringContainsString('panel.remove()', $response->getContent());
-        $this->assertStringContainsString('</aside>', $response->getContent());
+        $response->assertSee('id="nms-dev-panel-loader"', false);
+        $response->assertSee('data-nms-loader-title', false);
+        $response->assertSee('Applying database dump');
+        $response->assertSee('Please keep this page open.');
+    }
+
+    public function test_it_injects_panel_behaviour(): void
+    {
+        $content = $this->get('/html')->assertOk()->getContent();
+
+        $this->assertStringContainsString('nms-dev-panel', $content);
+        $this->assertStringContainsString('[name="email"]', $content);
+        $this->assertStringContainsString('setNativeValue(field,value)', $content);
+        $this->assertStringContainsString('field.blur()', $content);
+        $this->assertStringContainsString("data.append('confirmation','REPLACE')", $content);
+        $this->assertStringContainsString('showLoader(title,message)', $content);
+        $this->assertStringContainsString('hideLoader();throw error', $content);
+        $this->assertStringContainsString("clearBrowserState();status.textContent='Database replaced and payments configured'", $content);
+        $this->assertStringContainsString('window.location.reload()', $content);
+        $this->assertStringContainsString('panel.remove()', $content);
+        $this->assertStringContainsString('</aside>', $content);
     }
 
     public function test_it_displays_the_task_label_and_links_to_jira(): void

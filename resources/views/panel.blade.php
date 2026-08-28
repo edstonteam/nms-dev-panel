@@ -22,14 +22,23 @@
         <output class="nms-dev-panel__status" aria-live="polite"></output>
     </div>
 </aside>
+<div id="nms-dev-panel-loader" role="status" aria-live="assertive" aria-label="Working" hidden>
+    <span class="nms-dev-panel-loader__spinner" aria-hidden="true"></span>
+    <strong data-nms-loader-title>Working</strong>
+    <span data-nms-loader-message></span>
+</div>
 <style>
 #nms-dev-panel{position:fixed;right:0;bottom:44px;z-index:2147483647;display:flex;align-items:stretch;max-width:calc(100vw - 16px);font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:#e5e7eb;transform:translateX(calc(100% - 42px));transition:transform .18s ease;filter:drop-shadow(0 8px 20px rgba(0,0,0,.3))}#nms-dev-panel:hover,#nms-dev-panel:focus-within{transform:translateX(0)}.nms-dev-panel__tab{display:flex;width:42px;align-items:center;justify-content:center;border-radius:8px 0 0 8px;background:#111827;color:#34d399;font-size:11px;font-weight:800;letter-spacing:.08em;text-decoration:none;writing-mode:vertical-rl}.nms-dev-panel__content{display:grid;gap:8px;width:240px;padding:12px;background:#111827}.nms-dev-panel__branch{display:grid;gap:2px}.nms-dev-panel__branch strong{color:#9ca3af;font-size:10px;text-transform:uppercase}.nms-dev-panel__branch code,.nms-dev-panel__branch a{overflow:hidden;color:#34d399;text-decoration:none;text-overflow:ellipsis;white-space:nowrap}#nms-dev-panel button{margin:0;border:1px solid #374151;border-radius:5px;padding:7px 9px;background:#1f2937;color:#f9fafb;font:inherit;text-align:left;cursor:pointer}#nms-dev-panel button:hover,#nms-dev-panel button:focus{border-color:#34d399;outline:none}.nms-dev-panel__status{min-height:18px;overflow-wrap:anywhere;color:#d1d5db;font-size:11px}
+#nms-dev-panel-loader{position:fixed;inset:0;z-index:2147483647;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;background:rgba(17,24,39,.92);color:#f9fafb;font:16px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;backdrop-filter:blur(3px)}#nms-dev-panel-loader[hidden]{display:none}.nms-dev-panel-loader__spinner{width:44px;height:44px;border:4px solid #4b5563;border-top-color:#34d399;border-radius:50%;animation:nms-dev-panel-spin .8s linear infinite}#nms-dev-panel-loader strong{font-size:18px}#nms-dev-panel-loader span:last-child{color:#d1d5db;font-size:13px}@keyframes nms-dev-panel-spin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){.nms-dev-panel-loader__spinner{animation-duration:1.6s}}
 </style>
 <script>
 (function(){
     var panel=document.getElementById('nms-dev-panel');
     if(!panel){return;}
     var status=panel.querySelector('.nms-dev-panel__status');
+    var loader=document.getElementById('nms-dev-panel-loader');
+    var loaderTitle=loader.querySelector('[data-nms-loader-title]');
+    var loaderMessage=loader.querySelector('[data-nms-loader-message]');
     var databaseDump=panel.querySelector('[data-nms-database-dump]');
     var token=@json(csrf_token());
     function parseResponse(response){
@@ -42,9 +51,18 @@
         status.textContent='Working...';
         return fetch(url,{method:'POST',credentials:'same-origin',headers:{'Accept':'application/json','Content-Type':'application/json','X-CSRF-TOKEN':token},body:data?JSON.stringify(data):null}).then(parseResponse);
     }
-    function upload(url,data){
-        status.textContent='Uploading and replacing database...';
-        return fetch(url,{method:'POST',credentials:'same-origin',headers:{'Accept':'application/json','X-CSRF-TOKEN':token},body:data}).then(parseResponse);
+    function showLoader(title,message){
+        loaderTitle.textContent=title||'Working';
+        loaderMessage.textContent=message||'';
+        loaderMessage.hidden=!message;
+        loader.setAttribute('aria-label',loaderTitle.textContent);
+        loader.hidden=false;
+    }
+    function hideLoader(){loader.hidden=true;}
+    function upload(url,data,title,message){
+        status.textContent=title||'Working';
+        showLoader(title,message);
+        return fetch(url,{method:'POST',credentials:'same-origin',headers:{'Accept':'application/json','X-CSRF-TOKEN':token},body:data}).then(parseResponse).catch(function(error){hideLoader();throw error;});
     }
     function copy(value){
         if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(value);}
@@ -102,13 +120,13 @@
         var file=databaseDump.files&&databaseDump.files[0];
         if(!file||!window.confirm('This permanently deletes and replaces the current database with "'+file.name+'". Continue?')){return;}
         var data=new FormData();data.append('confirmation','REPLACE');data.append('dump',file);
-        upload(@json(route('nms-dev-panel.database.replace')),data).then(function(){clearBrowserState();status.textContent='Database replaced and payments configured';window.location.reload();}).catch(function(error){status.textContent=error.message;});
+        upload(@json(route('nms-dev-panel.database.replace')),data,'Applying database dump','Please keep this page open.').then(function(){clearBrowserState();status.textContent='Database replaced and payments configured';window.location.reload();}).catch(function(error){status.textContent=error.message;});
     });
     panel.querySelector('[data-nms-action="clear"]').addEventListener('click',function(){
         post(@json(route('nms-dev-panel.cookies.clear')),{cookie_names:cookieNames(),cookie_paths:cookiePaths()}).then(function(){clearBrowserState();window.location.reload();}).catch(function(error){status.textContent=error.message;});
     });
     panel.querySelector('[data-nms-action="close"]').addEventListener('click',function(){
-        panel.remove();
+        loader.remove();panel.remove();
     });
 })();
 </script>
