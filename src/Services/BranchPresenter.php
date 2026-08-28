@@ -6,7 +6,13 @@ class BranchPresenter
 {
     public function present(string $branch): array
     {
-        $task = $this->parse($branch);
+        $releaseNumber = $this->releaseNumber($branch);
+
+        if ($releaseNumber !== null) {
+            return ['label' => 'Release '.$releaseNumber, 'issue' => 'WEB-'.$releaseNumber];
+        }
+
+        $task = $this->parseTask($branch);
 
         if ($task === null) {
             return ['label' => $branch, 'issue' => null];
@@ -22,12 +28,12 @@ class BranchPresenter
 
     public function number(string $branch): ?string
     {
-        $task = $this->parse($branch);
+        $task = $this->parseTask($branch);
 
-        return $task === null ? null : $task['number'];
+        return $task === null ? $this->releaseNumber($branch) : $task['number'];
     }
 
-    private function parse(string $branch): ?array
+    private function parseTask(string $branch): ?array
     {
         if (!preg_match('/^(?:(?<prefix>[A-Za-z]+)-)?WEB-(?<number>\d+)$/i', $branch, $matches)) {
             return null;
@@ -37,5 +43,14 @@ class BranchPresenter
             'prefix' => $matches['prefix'] ?? '',
             'number' => $matches['number'],
         ];
+    }
+
+    private function releaseNumber(string $branch): ?string
+    {
+        if (!preg_match('/^release-\d{4}-\d{2}-\d{2}-(?<number>\d+)$/i', $branch, $matches)) {
+            return null;
+        }
+
+        return $matches['number'];
     }
 }

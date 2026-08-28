@@ -32,6 +32,17 @@ class BranchPresenterTest extends TestCase
         $this->assertNull($presenter->number('develop'));
     }
 
+    public function test_it_presents_release_branches_with_a_jira_issue(): void
+    {
+        $presenter = new BranchPresenter();
+
+        $this->assertSame([
+            'label' => 'Release 1314',
+            'issue' => 'WEB-1314',
+        ], $presenter->present('release-2026-08-28-1314'));
+        $this->assertSame('1314', $presenter->number('release-2026-08-28-1314'));
+    }
+
     public function test_it_preserves_an_unrecognised_branch_without_a_jira_issue(): void
     {
         $this->assertSame([
