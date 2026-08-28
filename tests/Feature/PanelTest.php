@@ -1,9 +1,9 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Tests\Feature;
+namespace Edstonteam\NmsDevPanel\Tests\Feature;
 
-use Egarrido\NmsDevPanel\Services\GitBranchResolver;
-use Egarrido\NmsDevPanel\Tests\TestCase;
+use Edstonteam\NmsDevPanel\Services\GitBranchResolver;
+use Edstonteam\NmsDevPanel\Tests\TestCase;
 
 class PanelTest extends TestCase
 {

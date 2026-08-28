@@ -1,9 +1,9 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Tests\Unit;
+namespace Edstonteam\NmsDevPanel\Tests\Unit;
 
-use Egarrido\NmsDevPanel\Http\Middleware\ExpireCookies;
-use Egarrido\NmsDevPanel\Tests\TestCase;
+use Edstonteam\NmsDevPanel\Http\Middleware\ExpireCookies;
+use Edstonteam\NmsDevPanel\Tests\TestCase;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Symfony\Component\HttpFoundation\Cookie;

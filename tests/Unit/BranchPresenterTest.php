@@ -1,8 +1,8 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Tests\Unit;
+namespace Edstonteam\NmsDevPanel\Tests\Unit;
 
-use Egarrido\NmsDevPanel\Services\BranchPresenter;
+use Edstonteam\NmsDevPanel\Services\BranchPresenter;
 use PHPUnit\Framework\TestCase;
 
 class BranchPresenterTest extends TestCase

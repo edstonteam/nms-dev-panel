@@ -1,9 +1,9 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Http\Controllers;
+namespace Edstonteam\NmsDevPanel\Http\Controllers;
 
-use Egarrido\NmsDevPanel\Services\ConsecutiveEmailGenerator;
-use Egarrido\NmsDevPanel\Services\GitBranchResolver;
+use Edstonteam\NmsDevPanel\Services\ConsecutiveEmailGenerator;
+use Edstonteam\NmsDevPanel\Services\GitBranchResolver;
 use Illuminate\Http\JsonResponse;
 
 class GenerateEmailController

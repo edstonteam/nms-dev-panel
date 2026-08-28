@@ -1,10 +1,10 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Tests\Feature;
+namespace Edstonteam\NmsDevPanel\Tests\Feature;
 
-use Egarrido\NmsDevPanel\Services\DatabaseDumpReplacer;
-use Egarrido\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
-use Egarrido\NmsDevPanel\Tests\TestCase;
+use Edstonteam\NmsDevPanel\Services\DatabaseDumpReplacer;
+use Edstonteam\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
+use Edstonteam\NmsDevPanel\Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 
 class ReplaceDatabaseTest extends TestCase

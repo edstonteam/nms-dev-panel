@@ -1,10 +1,10 @@
 <?php
 
-namespace Egarrido\NmsDevPanel;
+namespace Edstonteam\NmsDevPanel;
 
-use Egarrido\NmsDevPanel\Http\Middleware\ExpireCookies;
-use Egarrido\NmsDevPanel\Http\Middleware\InjectDevPanel;
-use Egarrido\NmsDevPanel\Services\GitBranchResolver;
+use Edstonteam\NmsDevPanel\Http\Middleware\ExpireCookies;
+use Edstonteam\NmsDevPanel\Http\Middleware\InjectDevPanel;
+use Edstonteam\NmsDevPanel\Services\GitBranchResolver;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 

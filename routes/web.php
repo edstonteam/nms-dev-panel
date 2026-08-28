@@ -1,9 +1,9 @@
 <?php
 
-use Egarrido\NmsDevPanel\Http\Controllers\ClearCookiesController;
-use Egarrido\NmsDevPanel\Http\Controllers\GenerateEmailController;
-use Egarrido\NmsDevPanel\Http\Controllers\ReconfigurePaymentsController;
-use Egarrido\NmsDevPanel\Http\Controllers\ReplaceDatabaseController;
+use Edstonteam\NmsDevPanel\Http\Controllers\ClearCookiesController;
+use Edstonteam\NmsDevPanel\Http\Controllers\GenerateEmailController;
+use Edstonteam\NmsDevPanel\Http\Controllers\ReconfigurePaymentsController;
+use Edstonteam\NmsDevPanel\Http\Controllers\ReplaceDatabaseController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix(config('nms-dev-panel.route_prefix'))

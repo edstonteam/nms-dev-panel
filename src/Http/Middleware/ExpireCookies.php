@@ -1,6 +1,6 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Http\Middleware;
+namespace Edstonteam\NmsDevPanel\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

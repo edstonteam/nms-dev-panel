@@ -1,6 +1,6 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Services;
+namespace Edstonteam\NmsDevPanel\Services;
 
 use Illuminate\Support\Carbon;
 use RuntimeException;

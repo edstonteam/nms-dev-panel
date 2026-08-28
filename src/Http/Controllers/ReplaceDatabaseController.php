@@ -1,10 +1,10 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Http\Controllers;
+namespace Edstonteam\NmsDevPanel\Http\Controllers;
 
-use Egarrido\NmsDevPanel\Http\Requests\ReplaceDatabaseRequest;
-use Egarrido\NmsDevPanel\Services\DatabaseDumpReplacer;
-use Egarrido\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
+use Edstonteam\NmsDevPanel\Http\Requests\ReplaceDatabaseRequest;
+use Edstonteam\NmsDevPanel\Services\DatabaseDumpReplacer;
+use Edstonteam\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
 use Illuminate\Http\JsonResponse;
 
 class ReplaceDatabaseController

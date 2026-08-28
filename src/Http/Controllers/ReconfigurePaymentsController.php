@@ -1,8 +1,8 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Http\Controllers;
+namespace Edstonteam\NmsDevPanel\Http\Controllers;
 
-use Egarrido\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
+use Edstonteam\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
 use Illuminate\Http\JsonResponse;
 
 class ReconfigurePaymentsController

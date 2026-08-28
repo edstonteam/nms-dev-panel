@@ -1,10 +1,10 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Http\Middleware;
+namespace Edstonteam\NmsDevPanel\Http\Middleware;
 
 use Closure;
-use Egarrido\NmsDevPanel\Services\BranchPresenter;
-use Egarrido\NmsDevPanel\Services\GitBranchResolver;
+use Edstonteam\NmsDevPanel\Services\BranchPresenter;
+use Edstonteam\NmsDevPanel\Services\GitBranchResolver;
 use Illuminate\Http\Request;
 
 class InjectDevPanel

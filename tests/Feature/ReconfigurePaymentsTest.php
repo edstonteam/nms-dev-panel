@@ -1,9 +1,9 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Tests\Feature;
+namespace Edstonteam\NmsDevPanel\Tests\Feature;
 
-use Egarrido\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
-use Egarrido\NmsDevPanel\Tests\TestCase;
+use Edstonteam\NmsDevPanel\Services\PaymentConfigurationReconfigurator;
+use Edstonteam\NmsDevPanel\Tests\TestCase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;

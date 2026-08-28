@@ -9,12 +9,12 @@ class ComposerStaticInit81ab9fe7df9f42c5b5f370bea8d96ec5
     public static $prefixLengthsPsr4 = array (
         'E' =>
         array (
-            'Egarrido\\NmsDevPanel\\' => 21,
+            'Edstonteam\\NmsDevPanel\\' => 21,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Egarrido\\NmsDevPanel\\' =>
+        'Edstonteam\\NmsDevPanel\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

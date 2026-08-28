@@ -1,8 +1,8 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Tests;
+namespace Edstonteam\NmsDevPanel\Tests;
 
-use Egarrido\NmsDevPanel\NmsDevPanelServiceProvider;
+use Edstonteam\NmsDevPanel\NmsDevPanelServiceProvider;
 use Illuminate\Routing\Router;
 use Orchestra\Testbench\TestCase as Orchestra;
 

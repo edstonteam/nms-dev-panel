@@ -1,6 +1,6 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Http\Controllers;
+namespace Edstonteam\NmsDevPanel\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 

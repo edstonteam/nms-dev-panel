@@ -1,6 +1,6 @@
 <?php
 
-namespace Egarrido\NmsDevPanel\Http\Requests;
+namespace Edstonteam\NmsDevPanel\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\UploadedFile;

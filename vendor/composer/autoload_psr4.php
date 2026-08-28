@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Egarrido\\NmsDevPanel\\' => array($baseDir . '/src'),
+    'Edstonteam\\NmsDevPanel\\' => array($baseDir . '/src'),
 );
