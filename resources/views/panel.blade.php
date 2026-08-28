@@ -18,11 +18,12 @@
         <button type="button" data-nms-action="payments">Configure payments</button>
         <button type="button" data-nms-action="database">Upload dump</button>
         <input type="file" data-nms-database-dump accept=".sql,.sql.gz,application/sql,application/gzip" hidden>
+        <button type="button" data-nms-action="close">Close panel</button>
         <output class="nms-dev-panel__status" aria-live="polite"></output>
     </div>
 </aside>
 <style>
-#nms-dev-panel{position:fixed;right:0;bottom:24px;z-index:2147483647;display:flex;align-items:stretch;max-width:calc(100vw - 16px);font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:#e5e7eb;transform:translateX(calc(100% - 42px));transition:transform .18s ease;filter:drop-shadow(0 8px 20px rgba(0,0,0,.3))}#nms-dev-panel:hover,#nms-dev-panel:focus-within{transform:translateX(0)}.nms-dev-panel__tab{display:flex;width:42px;align-items:center;justify-content:center;border-radius:8px 0 0 8px;background:#111827;color:#34d399;font-size:11px;font-weight:800;letter-spacing:.08em;text-decoration:none;writing-mode:vertical-rl}.nms-dev-panel__content{display:grid;gap:8px;width:240px;padding:12px;background:#111827}.nms-dev-panel__branch{display:grid;gap:2px}.nms-dev-panel__branch strong{color:#9ca3af;font-size:10px;text-transform:uppercase}.nms-dev-panel__branch code,.nms-dev-panel__branch a{overflow:hidden;color:#34d399;text-decoration:none;text-overflow:ellipsis;white-space:nowrap}#nms-dev-panel button{margin:0;border:1px solid #374151;border-radius:5px;padding:7px 9px;background:#1f2937;color:#f9fafb;font:inherit;text-align:left;cursor:pointer}#nms-dev-panel button:hover,#nms-dev-panel button:focus{border-color:#34d399;outline:none}.nms-dev-panel__status{min-height:18px;overflow-wrap:anywhere;color:#d1d5db;font-size:11px}
+#nms-dev-panel{position:fixed;right:0;bottom:44px;z-index:2147483647;display:flex;align-items:stretch;max-width:calc(100vw - 16px);font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:#e5e7eb;transform:translateX(calc(100% - 42px));transition:transform .18s ease;filter:drop-shadow(0 8px 20px rgba(0,0,0,.3))}#nms-dev-panel:hover,#nms-dev-panel:focus-within{transform:translateX(0)}.nms-dev-panel__tab{display:flex;width:42px;align-items:center;justify-content:center;border-radius:8px 0 0 8px;background:#111827;color:#34d399;font-size:11px;font-weight:800;letter-spacing:.08em;text-decoration:none;writing-mode:vertical-rl}.nms-dev-panel__content{display:grid;gap:8px;width:240px;padding:12px;background:#111827}.nms-dev-panel__branch{display:grid;gap:2px}.nms-dev-panel__branch strong{color:#9ca3af;font-size:10px;text-transform:uppercase}.nms-dev-panel__branch code,.nms-dev-panel__branch a{overflow:hidden;color:#34d399;text-decoration:none;text-overflow:ellipsis;white-space:nowrap}#nms-dev-panel button{margin:0;border:1px solid #374151;border-radius:5px;padding:7px 9px;background:#1f2937;color:#f9fafb;font:inherit;text-align:left;cursor:pointer}#nms-dev-panel button:hover,#nms-dev-panel button:focus{border-color:#34d399;outline:none}.nms-dev-panel__status{min-height:18px;overflow-wrap:anywhere;color:#d1d5db;font-size:11px}
 </style>
 <script>
 (function(){
@@ -105,6 +106,9 @@
     });
     panel.querySelector('[data-nms-action="clear"]').addEventListener('click',function(){
         post(@json(route('nms-dev-panel.cookies.clear')),{cookie_names:cookieNames(),cookie_paths:cookiePaths()}).then(function(){clearBrowserState();window.location.reload();}).catch(function(error){status.textContent=error.message;});
+    });
+    panel.querySelector('[data-nms-action="close"]').addEventListener('click',function(){
+        panel.remove();
     });
 })();
 </script>

@@ -14,9 +14,10 @@ class PanelTest extends TestCase
         $response->assertOk();
         $response->assertSee('id="nms-dev-panel"', false);
         $response->assertSee('Generate email');
-        $response->assertSee('Reconfigure payments');
-        $response->assertSee('Replace database');
+        $response->assertSee('Configure payments');
+        $response->assertSee('Upload dump');
         $response->assertSee('Clear storage &amp; cookies', false);
+        $response->assertSee('Close panel');
         $this->assertStringContainsString('nms-dev-panel', $response->getContent());
         $this->assertStringContainsString('[name="email"]', $response->getContent());
         $this->assertStringContainsString('setNativeValue(field,value)', $response->getContent());
@@ -24,6 +25,7 @@ class PanelTest extends TestCase
         $this->assertStringContainsString("data.append('confirmation','REPLACE')", $response->getContent());
         $this->assertStringContainsString("clearBrowserState();status.textContent='Database replaced and payments configured'", $response->getContent());
         $this->assertStringContainsString('window.location.reload()', $response->getContent());
+        $this->assertStringContainsString('panel.remove()', $response->getContent());
         $this->assertStringContainsString('</aside>', $response->getContent());
     }
 
