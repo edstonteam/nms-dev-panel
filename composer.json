@@ -1,0 +1,40 @@
+{
+    "name": "egarrido/nms-dev-panel",
+    "description": "Developer panel for Laravel applications",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.0",
+        "symfony/process": "^5.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Egarrido\\NmsDevPanel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Egarrido\\NmsDevPanel\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Egarrido\\NmsDevPanel\\NmsDevPanelServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Ernesto Garrido"
+        }
+    ],
+    "scripts": {
+        "test": "phpunit"
+    }
+}
